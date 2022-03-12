@@ -26,7 +26,7 @@ client = commands.Bot(command_prefix=">",
 async def on_ready():
     await client.change_presence(status=discord.Status.idle,
                                  activity=discord.Game('>help'))
-    print('Entramos como {0.user}'.format(client))
+    print('we entered as {0.user}'.format(client))
 
 #the bot enters a voice channel
 @client.command()
@@ -37,7 +37,7 @@ async def join(ctx):
         await voice.move_to(channel)
     else:
         voice = await channel.connect()
-    await ctx.send('o bot entrou no canal de voz')
+    await ctx.send('the bot joined the voice channel')
   
 #the bot leaves the voice channel
 @client.command()
@@ -109,13 +109,13 @@ async def clear(ctx, amount=20):
 @client.command()
 async def kick(ctx, member: discord.Member, *, reason=None):
     await member.kick(reason=reason)
-    await ctx.send(f'O membro:{member.mention},was kicked!')
+    await ctx.send(f'the member:{member.mention},was kicked!')
 
 #the bot bans a member
 @client.command()
 async def ban(ctx, member: discord.Member, *, reason=None):
     await member.ban(reason=reason)
-    await ctx.send(f'O membro:{member.mention},was banned!')
+    await ctx.send(f'the member:{member.mention},was banned!')
 
 #the bot removes the member ban
 @client.command()
@@ -129,7 +129,7 @@ async def unban(ctx, *, member):
         if (user.name, user.discriminator) == (member_name,
                                                member_discriminator):
             await ctx.guild.unban(user)
-            await ctx.send(f'Desbanido! {user.mention}#{user.discriminator}')
+            await ctx.send(f'unbanned {user.mention}#{user.discriminator}')
             return
 
 #the bot plays a dice
@@ -164,9 +164,9 @@ async def sad(ctx):
 @client.event
 async def on_command_error(ctx, error):
   if isinstance(error,MissingRequiredArgument):
-    await ctx.send("envie todos os argumentos")
+    await ctx.send("send all arguments")
   elif isinstance(error,CommandNotFound):
-      await ctx.send("o comando não existe")
+      await ctx.send("the command does not exist")
   else:
     raise error
 
